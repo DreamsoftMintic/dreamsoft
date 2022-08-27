@@ -1,17 +1,16 @@
 package com.dreamsoft.ingresosegresos.modelo;
 
-import com.dreamsoft.ingresosegresos.modelo.Empleado;
-
 import java.time.LocalDate;
 
 public class MovimientoDinero {
     private double monto;
     private boolean ingreso;
     private String concepto;
-    private LocalDate fecha;
+    private LocalDate fechaMovimiento;
     private Empleado empleado;
-
-    public MovimientoDinero(double monto, boolean ingreso, String concepto, LocalDate fecha, Empleado empleado) {
+    private LocalDate fechaCr;
+    private LocalDate fechaUpd;
+    public MovimientoDinero(double monto, boolean ingreso, String concepto, LocalDate fechaMovimiento, Empleado empleado) {
         if (ingreso == true){
             this.monto = monto;
         }else{
@@ -19,8 +18,10 @@ public class MovimientoDinero {
         }
         this.ingreso = ingreso;
         this.concepto = concepto;
-        this.fecha = fecha;
+        this.fechaMovimiento = fechaMovimiento;
         this.empleado = empleado;
+        this.fechaCr = LocalDate.now();
+        this.fechaUpd = LocalDate.now();
     }
 
     public double getMonto() {
@@ -35,16 +36,25 @@ public class MovimientoDinero {
         return concepto;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
+    public LocalDate getFechaMovimiento() {
+        return fechaMovimiento;
     }
 
     public Empleado getEmpleado() {
         return empleado;
     }
 
+    public LocalDate getFechaCr() {
+        return fechaCr;
+    }
+
+    public LocalDate getFechaUpd() {
+        return fechaUpd;
+    }
+
     public void setMonto(double monto) {
         this.monto = monto;
+        this.fechaUpd = LocalDate.now();
     }
 
     public void setIngreso(boolean ingreso) {
@@ -54,21 +64,27 @@ public class MovimientoDinero {
         }else{
             this.monto = -this.monto;
         }
+        this.fechaUpd = LocalDate.now();
     }
 
     public void setConcepto(String concepto) {
         this.concepto = concepto;
+        this.fechaUpd = LocalDate.now();
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public void setFechaMovimiento(LocalDate fechaMovimiento) {
+        this.fechaMovimiento = fechaMovimiento;
+        this.fechaUpd = LocalDate.now();
     }
 
     public void descipcion() {
+        System.out.println("Descripcion Movimiento Dinero");
         System.out.println("Monto " + this.monto);
         System.out.println("Ingreso: " + this.ingreso);
         System.out.println("Concepto: " + this.concepto);
-        System.out.println("Fecha: " + this.fecha);
+        System.out.println("Fecha movimiento: " + this.fechaMovimiento);
         System.out.println("Registrado por: " + this.empleado.getNombreEmpleado());
+        System.out.println("Fecha creacion en sistema: " + this.fechaCr);
+        System.out.println("Fecha actualizacion en sistema: " + this.fechaUpd);
     }
 }

@@ -5,39 +5,37 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "Empleado")
+@Table(name = "empleado")
 public class Empleado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idEmpleado;
-    @Column(name = "nombreEmpleado")
+    @Column(name = "nombre_empleado")
     private String nombreEmpleado;
     @Column(name = "documento")
     private int documento;
-    @Column(name = "correoEmpleado", unique = true)
+    @Column(name = "correo_empleado", unique = true)
     private String correoEmpleado;
-
-    public enum rolename{ ADMIN, OPERARIO ;  }
     @Column(name = "rol")
-    private rolename rol;
-    @Column(name = "fechaCr")
+    private String rol;
+    @Column(name = "fecha_cr")
     private LocalDate fechaCr;
-    @Column(name = "fechaUpd")
+    @Column(name = "fecha_upd")
     private LocalDate fechaUpd;
 
     @ManyToOne
-    @JoinColumn(name = "idEmpresa", nullable = false)
+    @JoinColumn(name = "id_empresa", nullable = false)
     private Empresa empresaEmpleado;
     @OneToOne
-    @JoinColumn(name = "idPerfil", referencedColumnName = "idEmpleado")
+    @JoinColumn(name = "id_perfil", referencedColumnName = "id_empleado")
     private Perfil perfil;
 
-    @OneToMany(mappedBy = "Empleado")
+    @OneToMany(mappedBy = "empleado")
     private List<MovimientoDinero> movimientos;
 
 
-    public Empleado(String nombreEmpleado, int documento, String correoEmpleado, Empresa empresaEmpleado, rolename rol, Perfil perfil) {
+    public Empleado(String nombreEmpleado, int documento, String correoEmpleado, Empresa empresaEmpleado, String rol, Perfil perfil) {
         this.nombreEmpleado = nombreEmpleado;
         this.documento = documento;
         this.correoEmpleado = correoEmpleado;
@@ -66,7 +64,7 @@ public class Empleado {
         return idEmpleado;
     }
 
-    public rolename getRol() {
+    public String getRol() {
         return rol;
     }
 
@@ -95,7 +93,7 @@ public class Empleado {
         this.fechaUpd = LocalDate.now();
     }
 
-    public void setRol(rolename rol) {
+    public void setRol(String rol) {
         this.rol = rol;
         this.fechaUpd = LocalDate.now();
     }

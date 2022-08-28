@@ -3,26 +3,26 @@ package com.dreamsoft.ingresosegresos.modelo;
 import javax.persistence.*;
 import java.time.LocalDate;
 @Entity
-@Table(name = "Perfil")
+@Table(name = "perfil")
 public class Perfil {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String idPerfil;
+    private long idPerfil;
     @Column(name = "imagen")
     private String imagen;
     @Column(name = "telefono")
     private String telefono;
     @Column(name = "pass")
     private String pass;
-    @Column(name = "fechaCr")
+    @Column(name = "fecha_cr")
     private LocalDate fechaCr;
-    @Column(name = "fechaUpd")
+    @Column(name = "fecha_upd")
     private LocalDate fechaUpd;
 
-    @OneToOne(mappedBy = "Perfil")
+    @OneToOne(mappedBy = "perfil")
     private Empleado empleado;
 
-    public Perfil(String idPefil, String imagen, String telefono, String pass) {
+    public Perfil(long idPefil, String imagen, String telefono, String pass) {
         this.idPerfil = idPerfil;
         this.imagen = imagen;
         this.telefono = telefono;
@@ -31,7 +31,7 @@ public class Perfil {
         this.fechaUpd = LocalDate.now();
     }
 
-    public String getId() {
+    public long getId() {
         return idPerfil;
     }
 

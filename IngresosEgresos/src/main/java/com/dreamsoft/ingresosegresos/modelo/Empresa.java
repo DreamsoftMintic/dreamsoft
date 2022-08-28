@@ -5,28 +5,28 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "Empresa")
+@Table(name = "empresa")
 public class Empresa {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idEmpresa;
-    @Column(name = "nombreEmpresa", unique = true)
+    @Column(name = "nombre_empresa", unique = true)
     private String nombreEmpresa;
-    @Column(name = "direccionEmpresa")
+    @Column(name = "direccion_empresa")
     private String direccionEmpresa;
-    @Column(name = "telefonoEmpresa")
+    @Column(name = "telefono_empresa")
     private String telefonoEmpresa;
     @Column(name = "NIT", unique = true)
     private int NIT;
-    @Column(name = "fechaCr")
+    @Column(name = "fecha_cr")
     private LocalDate fechaCr;
-    @Column(name = "fechaUpd")
+    @Column(name = "fecha_upd")
     private LocalDate fechaUpd;
 
-    @OneToMany(mappedBy = "Empresa")
+    @OneToMany(mappedBy = "empresa")
     private List<Empleado> empleados;
 
-    @OneToMany(mappedBy = "Empresa")
+    @OneToMany(mappedBy = "empresa")
     private List<MovimientoDinero> movimientos;
 
     public Empresa(String nombreEmpresa, String direccionEmpresa, String telefonoEmpresa, int NIT) {

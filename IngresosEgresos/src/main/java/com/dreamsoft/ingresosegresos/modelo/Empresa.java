@@ -1,14 +1,33 @@
 package com.dreamsoft.ingresosegresos.modelo;
 
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
+@Entity
+@Table(name = "Empresa")
 public class Empresa {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long idEmpresa;
+    @Column(name = "nombreEmpresa", unique = true)
     private String nombreEmpresa;
+    @Column(name = "direccionEmpresa")
     private String direccionEmpresa;
+    @Column(name = "telefonoEmpresa")
     private String telefonoEmpresa;
+    @Column(name = "NIT", unique = true)
     private int NIT;
+    @Column(name = "fechaCr")
     private LocalDate fechaCr;
+    @Column(name = "fechaUpd")
     private LocalDate fechaUpd;
+
+    @OneToMany(mappedBy = "Empresa")
+    private List<Empleado> empleados;
+
+    @OneToMany(mappedBy = "Empresa")
+    private List<MovimientoDinero> movimientos;
 
     public Empresa(String nombreEmpresa, String direccionEmpresa, String telefonoEmpresa, int NIT) {
         this.nombreEmpresa = nombreEmpresa;
@@ -43,6 +62,10 @@ public class Empresa {
         return fechaUpd;
     }
 
+    public long getIdEmpresa() {
+        return idEmpresa;
+    }
+
     public void setNombreEmpresa(String nombreEmpresa) {
         this.nombreEmpresa = nombreEmpresa;
         this.fechaUpd = LocalDate.now();
@@ -64,7 +87,7 @@ public class Empresa {
     }
 
 
-
+/*
     public void descipcion(){
         System.out.println("Descripcion Empresa");
         System.out.println("Empresa: " + this.nombreEmpresa);
@@ -74,4 +97,6 @@ public class Empresa {
         System.out.println("Fecha creacion en sistema: " + this.fechaCr);
         System.out.println("Fecha actualizacion en sistema: " + this.fechaUpd);
     }
+
+ */
 }

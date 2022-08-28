@@ -13,7 +13,7 @@ public class IngresosEgresosApplication {
 
 
         SpringApplication.run(IngresosEgresosApplication.class, args);
-
+/*
         // Esto debe ser escrito en el front end para que sea solo dos opciones
         Rol admin = new Rol("Administrador");
         Rol op = new Rol("Operativo");
@@ -50,7 +50,7 @@ public class IngresosEgresosApplication {
         ingreso1.setIngreso(false);
         System.out.println("---------------");
         ingreso1.descipcion();
-
+*/
 
     }
 

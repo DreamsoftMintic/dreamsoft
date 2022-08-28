@@ -1,28 +1,38 @@
 package com.dreamsoft.ingresosegresos.modelo;
 
+import javax.persistence.*;
 import java.time.LocalDate;
-
+@Entity
+@Table(name = "Perfil")
 public class Perfil {
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String idPerfil;
+    @Column(name = "imagen")
     private String imagen;
+    @Column(name = "telefono")
     private String telefono;
-    private String usuario;
+    @Column(name = "pass")
     private String pass;
+    @Column(name = "fechaCr")
     private LocalDate fechaCr;
+    @Column(name = "fechaUpd")
     private LocalDate fechaUpd;
 
-    public Perfil(String id, String imagen, String telefono, String usuario, String pass) {
-        this.id = id;
+    @OneToOne(mappedBy = "Perfil")
+    private Empleado empleado;
+
+    public Perfil(String idPefil, String imagen, String telefono, String pass) {
+        this.idPerfil = idPerfil;
         this.imagen = imagen;
         this.telefono = telefono;
-        this.usuario = usuario;
         this.pass = pass;
         this.fechaCr = LocalDate.now();
         this.fechaUpd = LocalDate.now();
     }
 
     public String getId() {
-        return id;
+        return idPerfil;
     }
 
     public String getImage() {
@@ -33,11 +43,7 @@ public class Perfil {
         return telefono;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public String getPass() {
+   public String getPass() {
         return pass;
     }
 
@@ -66,14 +72,16 @@ public class Perfil {
 
 
 
-    public void descipcion() {
+    /*public void descipcion() {
         System.out.println("Descripcion Perfil");
-        System.out.println("Id: " + this.id);
+        System.out.println("Id: " + this.idPerfil);
         System.out.println("Imagen: " + this.imagen);
         System.out.println("Telefono: " + this.telefono);
-        System.out.println("Usuario: " + this.usuario);
         System.out.println("Contrasena: " + this.pass);
         System.out.println("Fecha creacion en sistema: " + this.fechaCr);
         System.out.println("Fecha actualizacion en sistema: " + this.fechaUpd);
+
+
     }
+   */
 }

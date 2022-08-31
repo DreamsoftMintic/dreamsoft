@@ -1,4 +1,4 @@
-package com.dreamsoft.ingresosegresos.modelo;
+package com.dreamsoft.ingresosegresos.Entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;

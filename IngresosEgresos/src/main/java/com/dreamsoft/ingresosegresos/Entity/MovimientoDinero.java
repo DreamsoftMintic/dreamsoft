@@ -1,4 +1,4 @@
-package com.dreamsoft.ingresosegresos.modelo;
+package com.dreamsoft.ingresosegresos.Entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -85,4 +85,9 @@ public class MovimientoDinero {
         System.out.println("Fecha actualizacion en sistema: " + this.fechaUpd);
     }
     */
+
+    public static class Rol {
+
+
+    }
 }

@@ -1,10 +1,7 @@
-package com.dreamsoft.ingresosegresos.vista;
+package com.dreamsoft.ingresosegresos.Service;
 
-import com.dreamsoft.ingresosegresos.modelo.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.time.LocalDate;
 
 @SpringBootApplication
 public class IngresosEgresosApplication {

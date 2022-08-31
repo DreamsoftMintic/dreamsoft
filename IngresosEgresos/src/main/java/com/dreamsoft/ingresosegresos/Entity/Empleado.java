@@ -1,4 +1,4 @@
-package com.dreamsoft.ingresosegresos.modelo;
+package com.dreamsoft.ingresosegresos.Entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -26,7 +26,7 @@ public class Empleado {
 
     @ManyToOne
     @JoinColumn(name = "id_empresa", nullable = false)
-    private Empresa empresaEmpleado;
+    private Empresa empresaEmpleado = new Empresa();
     @OneToOne
     @JoinColumn(name = "id_perfil", referencedColumnName = "id_empleado")
     private Perfil perfil;

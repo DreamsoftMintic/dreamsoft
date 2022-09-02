@@ -1,4 +1,4 @@
-package com.dreamsoft.ingresosegresos.Entity;
+package com.dreamsoft.ingresosegresos.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class MovimientoDinero {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idMovimientoDinero;
+    private long id;
     @Column(name = "monto")
     private double monto;
     @Column(name = "concepto")
@@ -20,18 +20,20 @@ public class MovimientoDinero {
     @Column(name = "fecha_upd")
     private LocalDate fechaUpd;
 
-    @ManyToOne
-    @JoinColumn(name = "id_empresa", nullable = false)
-    private Empresa empresaEmpleado;
-    @ManyToOne
-    @JoinColumn(name = "id_empleado", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Empresa.class)
+    @JoinColumn(name = "empresa_id", nullable = false)
+    private Empresa empresa;
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Empleado.class)
+    @JoinColumn(name = "empleado_id", nullable = false)
     private Empleado empleado;
 
-    public MovimientoDinero(double monto, String concepto, LocalDate fechaMovimiento, Empleado empleado) {
+    public MovimientoDinero(){
+
+    }
+    public MovimientoDinero( double monto, String concepto, LocalDate fechaMovimiento) {
         this.monto = monto;
         this.concepto = concepto;
         this.fechaMovimiento = fechaMovimiento;
-        this.empleado = empleado;
         this.fechaCr = LocalDate.now();
         this.fechaUpd = LocalDate.now();
     }
@@ -85,9 +87,4 @@ public class MovimientoDinero {
         System.out.println("Fecha actualizacion en sistema: " + this.fechaUpd);
     }
     */
-
-    public static class Rol {
-
-
-    }
 }

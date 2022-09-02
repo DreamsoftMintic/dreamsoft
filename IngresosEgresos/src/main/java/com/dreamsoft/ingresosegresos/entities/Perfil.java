@@ -1,4 +1,4 @@
-package com.dreamsoft.ingresosegresos.Entity;
+package com.dreamsoft.ingresosegresos.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -7,7 +7,7 @@ import java.time.LocalDate;
 public class Perfil {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idPerfil;
+    private long id;
     @Column(name = "imagen")
     private String imagen;
     @Column(name = "telefono")
@@ -19,20 +19,18 @@ public class Perfil {
     @Column(name = "fecha_upd")
     private LocalDate fechaUpd;
 
-    @OneToOne(mappedBy = "perfil")
+    @OneToOne(mappedBy = "perfil", cascade = CascadeType.ALL)
     private Empleado empleado;
 
-    public Perfil(long idPefil, String imagen, String telefono, String pass) {
-        this.idPerfil = idPerfil;
+    public Perfil(){
+
+    }
+    public Perfil( String imagen, String telefono, String pass) {
         this.imagen = imagen;
         this.telefono = telefono;
         this.pass = pass;
         this.fechaCr = LocalDate.now();
         this.fechaUpd = LocalDate.now();
-    }
-
-    public long getId() {
-        return idPerfil;
     }
 
     public String getImage() {

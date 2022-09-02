@@ -1,4 +1,4 @@
-package com.dreamsoft.ingresosegresos.Entity;
+package com.dreamsoft.ingresosegresos.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -9,7 +9,7 @@ import java.util.List;
 public class Empresa {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idEmpresa;
+    private long id;
     @Column(name = "nombre_empresa", unique = true)
     private String nombreEmpresa;
     @Column(name = "direccion_empresa")
@@ -23,13 +23,17 @@ public class Empresa {
     @Column(name = "fecha_upd")
     private LocalDate fechaUpd;
 
-    @OneToMany(mappedBy = "empresa")
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
     private List<Empleado> empleados;
 
-    @OneToMany(mappedBy = "empresa")
+    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
     private List<MovimientoDinero> movimientos;
 
-    public Empresa(String nombreEmpresa, String direccionEmpresa, String telefonoEmpresa, int NIT) {
+    public Empresa(){
+
+    }
+
+    public Empresa( String nombreEmpresa, String direccionEmpresa, String telefonoEmpresa, int NIT) {
         this.nombreEmpresa = nombreEmpresa;
         this.direccionEmpresa = direccionEmpresa;
         this.telefonoEmpresa = telefonoEmpresa;
@@ -62,32 +66,32 @@ public class Empresa {
         return fechaUpd;
     }
 
-    public long getIdEmpresa() {
-        return idEmpresa;
-    }
 
     public void setNombreEmpresa(String nombreEmpresa) {
         this.nombreEmpresa = nombreEmpresa;
-        this.fechaUpd = LocalDate.now();
     }
 
     public void setDireccionEmpresa(String direccionEmpresa) {
         this.direccionEmpresa = direccionEmpresa;
-        this.fechaUpd = LocalDate.now();
     }
 
     public void setTelefonoEmpresa(String telefonoEmpresa) {
         this.telefonoEmpresa = telefonoEmpresa;
-        this.fechaUpd = LocalDate.now();
     }
 
     public void setNIT(int NIT) {
         this.NIT = NIT;
-        this.fechaUpd = LocalDate.now();
     }
 
+    public void setFechaCr(LocalDate fechaCr) {
+        this.fechaCr = fechaCr;
+    }
 
-/*
+    public void setFechaUpd(LocalDate fechaUpd) {
+        this.fechaUpd = fechaUpd;
+    }
+
+    /*
     public void descipcion(){
         System.out.println("Descripcion Empresa");
         System.out.println("Empresa: " + this.nombreEmpresa);

@@ -67,5 +67,23 @@ public class EmpresaService {
 
     }
 
-    //Esta pendiente el servicio para controlador Patch
+    //servicio para controlador Patch
+
+    public Empresa partialUpdateEmpresa(Long id, Map<Object, Object> fields){
+        Optional<Empresa> dbData = this.repository.findById(id);
+
+        if(dbData.isPresent()){
+            fields.forEach((key,value) ->{
+                Field field = ReflectionUtils.findField(Empresa.class, (String) key);
+                field.setAccessible(true);
+                ReflectionUtils.setField(field, dbData.get(), value);
+            });
+            Empresa e = dbData.get();
+            this.repository.save(e);
+            return e;
+
+        }
+        return null;
+
+    }
 }

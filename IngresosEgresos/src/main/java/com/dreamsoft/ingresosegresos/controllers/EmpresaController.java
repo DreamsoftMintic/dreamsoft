@@ -37,11 +37,17 @@ public class EmpresaController {
         return this.service.deleteEmpresa(id);
     }
 
-    //controlador Put, actualiza un campo(fila) en la tabla. Actualiza todos los valores.
+    //controlador Put, actualiza un campo(fila) en la tabla. Actualiza todos los atributos, si un atributo no es mencionado se declara como null
     @PutMapping("/enterprises/{id}")
     public Empresa updateEmpresa(@PathVariable("id") Long id, @RequestBody Empresa empresa){
         return this.service.updateEmpresa(id, empresa);
     }
 
-    //Esta pendiente el controlador Patch
+    //controlador Patch, actualiza parcialmente uno o varios de los datos de la fila. Actualiza solo los atributos mencionados, los no mencionados se dejan como estaban
+    @PatchMapping("/enterprises/{id}")
+    public Empresa partialUpdateEmpresa(@PathVariable("id") Long id, @RequestBody Map<Object, Object> fields){
+        return this.service.partialUpdateEmpresa(id, fields);
+    }
+
+
 }

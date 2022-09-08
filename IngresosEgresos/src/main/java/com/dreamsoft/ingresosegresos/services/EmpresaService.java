@@ -18,7 +18,6 @@ public class EmpresaService {
         this.repository = repository;
     }
 
-
     //Servicio para el controlador Get, retorna todos los campos(filas) de la tabla
     public List<Empresa> getEmpresas(){
         return this.repository.findAll();

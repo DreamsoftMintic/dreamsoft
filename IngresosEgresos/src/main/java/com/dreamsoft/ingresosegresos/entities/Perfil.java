@@ -33,43 +33,61 @@ public class Perfil {
         this.fechaUpd = LocalDate.now();
     }
 
-    public String getImage() {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getImagen() {
         return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public String getTelefono() {
         return telefono;
     }
 
-   public String getPass() {
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getPass() {
         return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     public LocalDate getFechaCr() {
         return fechaCr;
     }
 
+    public void setFechaCr(LocalDate fechaCr) {
+        this.fechaCr = fechaCr;
+    }
+
     public LocalDate getFechaUpd() {
         return fechaUpd;
     }
 
-    public void setImage(String imagen) {
-        this.imagen = imagen;
-        this.fechaUpd = LocalDate.now();
+    public void setFechaUpd(LocalDate fechaUpd) {
+        this.fechaUpd = fechaUpd;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-        this.fechaUpd = LocalDate.now();
+    public Empleado getEmpleado() {
+        return empleado;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
-        this.fechaUpd = LocalDate.now();
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
     }
-
-
-
     /*public void descipcion() {
         System.out.println("Descripcion Perfil");
         System.out.println("Id: " + this.idPerfil);

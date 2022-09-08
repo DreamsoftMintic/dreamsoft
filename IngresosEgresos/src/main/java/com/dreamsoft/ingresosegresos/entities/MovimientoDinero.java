@@ -30,13 +30,7 @@ public class MovimientoDinero {
     public MovimientoDinero(){
 
     }
-    public MovimientoDinero( double monto, String concepto, LocalDate fechaMovimiento) {
-        this.monto = monto;
-        this.concepto = concepto;
-        this.fechaMovimiento = fechaMovimiento;
-        this.fechaCr = LocalDate.now();
-        this.fechaUpd = LocalDate.now();
-    }
+
 
     public double getMonto() {
         return monto;
@@ -77,14 +71,45 @@ public class MovimientoDinero {
         this.fechaUpd = LocalDate.now();
     }
 
-    /*public void descipcion() {
-        System.out.println("Descripcion Movimiento Dinero");
-        System.out.println("Monto " + this.monto);
-        System.out.println("Concepto: " + this.concepto);
-        System.out.println("Fecha movimiento: " + this.fechaMovimiento);
-        System.out.println("Registrado por: " + this.empleado.getNombreEmpleado());
-        System.out.println("Fecha creacion en sistema: " + this.fechaCr);
-        System.out.println("Fecha actualizacion en sistema: " + this.fechaUpd);
+    public long getId() {
+        return id;
     }
-    */
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setFechaCr(LocalDate fechaCr) {
+        this.fechaCr = fechaCr;
+    }
+
+    public void setFechaUpd(LocalDate fechaUpd) {
+        this.fechaUpd = fechaUpd;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+
+    @Override
+    public String toString() {
+        return "MovimientoDinero{" +
+                "id=" + id +
+                ", monto=" + monto +
+                ", concepto='" + concepto + '\'' +
+                ", fechaMovimiento=" + fechaMovimiento +
+                ", fechaCr=" + fechaCr +
+                ", fechaUpd=" + fechaUpd +
+                ", empresa=" + empresa +
+                ", empleado=" + empleado +
+                '}';
+    }
 }

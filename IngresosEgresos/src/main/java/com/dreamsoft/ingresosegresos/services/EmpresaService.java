@@ -18,6 +18,7 @@ public class EmpresaService {
         this.repository = repository;
     }
 
+
     //Servicio para el controlador Get, retorna todos los campos(filas) de la tabla
     public List<Empresa> getEmpresas(){
         return this.repository.findAll();
@@ -48,17 +49,15 @@ public class EmpresaService {
         Optional<Empresa> dbData = this.repository.findById(id);
 
         if(dbData.isPresent()){
-            /*fields.forEach((key,value) ->{
-                Field field = ReflectionUtils.findField(Empresa.class, (String) key);
-                field.setAccessible(true);
-                ReflectionUtils.setField(field, dbData.get(), value);
-            });*/
             Empresa e = dbData.get();
             e.setNombreEmpresa(empresa.getNombreEmpresa());
             e.setDireccionEmpresa(empresa.getDireccionEmpresa());
             e.setTelefonoEmpresa(empresa.getTelefonoEmpresa());
             e.setFechaCr(empresa.getFechaCr());
             e.setFechaUpd(empresa.getFechaUpd());
+            e.setEmpleados(empresa.getEmpleados());
+            e.setMovimientos(empresa.getMovimientos());
+            e.setNIT(empresa.getNIT());
             this.repository.save(e);
             return e;
         }
@@ -67,7 +66,6 @@ public class EmpresaService {
     }
 
     //servicio para controlador Patch
-
     public Empresa partialUpdateEmpresa(Long id, Map<Object, Object> fields){
         Optional<Empresa> dbData = this.repository.findById(id);
 

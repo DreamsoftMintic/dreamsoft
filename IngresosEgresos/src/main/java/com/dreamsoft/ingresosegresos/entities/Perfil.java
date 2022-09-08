@@ -25,13 +25,6 @@ public class Perfil {
     public Perfil(){
 
     }
-    public Perfil( String imagen, String telefono, String pass) {
-        this.imagen = imagen;
-        this.telefono = telefono;
-        this.pass = pass;
-        this.fechaCr = LocalDate.now();
-        this.fechaUpd = LocalDate.now();
-    }
 
     public long getId() {
         return id;
@@ -88,16 +81,17 @@ public class Perfil {
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
     }
-    /*public void descipcion() {
-        System.out.println("Descripcion Perfil");
-        System.out.println("Id: " + this.idPerfil);
-        System.out.println("Imagen: " + this.imagen);
-        System.out.println("Telefono: " + this.telefono);
-        System.out.println("Contrasena: " + this.pass);
-        System.out.println("Fecha creacion en sistema: " + this.fechaCr);
-        System.out.println("Fecha actualizacion en sistema: " + this.fechaUpd);
 
-
+    @Override
+    public String toString() {
+        return "Perfil{" +
+                "id=" + id +
+                ", imagen='" + imagen + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", pass='" + pass + '\'' +
+                ", fechaCr=" + fechaCr +
+                ", fechaUpd=" + fechaUpd +
+                ", empleado=" + empleado +
+                '}';
     }
-   */
 }

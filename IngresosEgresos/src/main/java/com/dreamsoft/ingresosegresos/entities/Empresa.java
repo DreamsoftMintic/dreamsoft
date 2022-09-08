@@ -1,5 +1,7 @@
 package com.dreamsoft.ingresosegresos.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -23,7 +25,7 @@ public class Empresa {
     @Column(name = "fecha_upd")
     private LocalDate fechaUpd;
 
-    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Empleado.class,mappedBy = "empresa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Empleado> empleados;
 
     @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
@@ -31,15 +33,6 @@ public class Empresa {
 
     public Empresa(){
 
-    }
-
-    public Empresa( String nombreEmpresa, String direccionEmpresa, String telefonoEmpresa, int NIT) {
-        this.nombreEmpresa = nombreEmpresa;
-        this.direccionEmpresa = direccionEmpresa;
-        this.telefonoEmpresa = telefonoEmpresa;
-        this.NIT = NIT;
-        this.fechaCr = LocalDate.now();
-        this.fechaUpd = LocalDate.now();
     }
 
     public String getNombreEmpresa() {
@@ -91,16 +84,43 @@ public class Empresa {
         this.fechaUpd = fechaUpd;
     }
 
-    /*
-    public void descipcion(){
-        System.out.println("Descripcion Empresa");
-        System.out.println("Empresa: " + this.nombreEmpresa);
-        System.out.println("Direccion: " + this.direccionEmpresa);
-        System.out.println("Telefono: " + this.telefonoEmpresa);
-        System.out.println("NIT: " + this.NIT);
-        System.out.println("Fecha creacion en sistema: " + this.fechaCr);
-        System.out.println("Fecha actualizacion en sistema: " + this.fechaUpd);
+    public long getId() {
+        return id;
     }
 
- */
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @JsonManagedReference
+    public List<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(List<Empleado> empleados) {
+        this.empleados = empleados;
+    }
+
+    public List<MovimientoDinero> getMovimientos() {
+        return movimientos;
+    }
+
+    public void setMovimientos(List<MovimientoDinero> movimientos) {
+        this.movimientos = movimientos;
+    }
+
+    @Override
+    public String toString() {
+        return "Empresa{" +
+                "id=" + id +
+                ", nombreEmpresa='" + nombreEmpresa + '\'' +
+                ", direccionEmpresa='" + direccionEmpresa + '\'' +
+                ", telefonoEmpresa='" + telefonoEmpresa + '\'' +
+                ", NIT=" + NIT +
+                ", fechaCr=" + fechaCr +
+                ", fechaUpd=" + fechaUpd +
+                ", empleados=" + empleados +
+                ", movimientos=" + movimientos +
+                '}';
+    }
 }

@@ -1,5 +1,7 @@
 package com.dreamsoft.ingresosegresos.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 @Entity
@@ -19,7 +21,7 @@ public class Perfil {
     @Column(name = "fecha_upd")
     private LocalDate fechaUpd;
 
-    @OneToOne(mappedBy = "perfil", cascade = CascadeType.ALL)
+    @OneToOne(targetEntity = Empleado.class, mappedBy = "perfil", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Empleado empleado;
 
     public Perfil(){
@@ -74,6 +76,7 @@ public class Perfil {
         this.fechaUpd = fechaUpd;
     }
 
+    @JsonManagedReference(value = "perfil-empleado")
     public Empleado getEmpleado() {
         return empleado;
     }

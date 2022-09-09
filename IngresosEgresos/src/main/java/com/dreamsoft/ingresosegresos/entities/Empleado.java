@@ -30,11 +30,11 @@ public class Empleado {
     @JoinColumn(name = "empresa_id", referencedColumnName = "id")
     private Empresa empresa;
 
-    @OneToOne(fetch = FetchType.LAZY, targetEntity = Perfil.class)
-    @JoinColumn(name = "perfil_id")
+    @OneToOne
+    @JoinColumn(name = "perfil_id", referencedColumnName = "id" )
     private Perfil perfil;
 
-    @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = MovimientoDinero.class, mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<MovimientoDinero> movimientos;
 
     public Empleado(){
@@ -97,7 +97,8 @@ public class Empleado {
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
-/*
+
+    @JsonBackReference(value = "perfil-empleado")
     public Perfil getPerfil() {
         return perfil;
     }
@@ -105,7 +106,7 @@ public class Empleado {
     public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
     }
-*/
+
     public List<MovimientoDinero> getMovimientos() {
         return movimientos;
     }

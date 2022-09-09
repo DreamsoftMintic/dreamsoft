@@ -25,10 +25,10 @@ public class Empresa {
     @Column(name = "fecha_upd")
     private LocalDate fechaUpd;
 
-    @OneToMany(targetEntity = Empleado.class,mappedBy = "empresa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Empleado.class, mappedBy = "empresa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Empleado> empleados;
 
-    @OneToMany(mappedBy = "empresa", cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = MovimientoDinero.class, mappedBy = "empresa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<MovimientoDinero> movimientos;
 
     public Empresa(){
@@ -100,7 +100,7 @@ public class Empresa {
     public void setEmpleados(List<Empleado> empleados) {
         this.empleados = empleados;
     }
-
+    @JsonManagedReference (value = "empresa-movimiento")
     public List<MovimientoDinero> getMovimientos() {
         return movimientos;
     }

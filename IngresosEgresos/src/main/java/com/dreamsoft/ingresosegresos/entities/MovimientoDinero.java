@@ -1,5 +1,7 @@
 package com.dreamsoft.ingresosegresos.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -20,11 +22,11 @@ public class MovimientoDinero {
     @Column(name = "fecha_upd")
     private LocalDate fechaUpd;
 
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Empresa.class)
-    @JoinColumn(name = "empresa_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "empresa_id", referencedColumnName = "id")
     private Empresa empresa;
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Empleado.class)
-    @JoinColumn(name = "empleado_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "empleado_id", referencedColumnName = "id")
     private Empleado empleado;
 
     public MovimientoDinero(){
@@ -44,6 +46,7 @@ public class MovimientoDinero {
         return fechaMovimiento;
     }
 
+    @JsonBackReference
     public Empleado getEmpleado() {
         return empleado;
     }
@@ -58,17 +61,14 @@ public class MovimientoDinero {
 
     public void setMonto(double monto) {
         this.monto = monto;
-        this.fechaUpd = LocalDate.now();
     }
 
     public void setConcepto(String concepto) {
         this.concepto = concepto;
-        this.fechaUpd = LocalDate.now();
-    }
+     }
 
     public void setFechaMovimiento(LocalDate fechaMovimiento) {
         this.fechaMovimiento = fechaMovimiento;
-        this.fechaUpd = LocalDate.now();
     }
 
     public long getId() {
@@ -87,6 +87,7 @@ public class MovimientoDinero {
         this.fechaUpd = fechaUpd;
     }
 
+    @JsonBackReference(value = "empresa-movimiento")
     public Empresa getEmpresa() {
         return empresa;
     }

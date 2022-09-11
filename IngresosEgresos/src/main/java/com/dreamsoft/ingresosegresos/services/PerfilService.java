@@ -67,7 +67,7 @@ public class PerfilService {
 
         if(dbData.isPresent()){
             fields.forEach((key,value) ->{
-                Field field = ReflectionUtils.findField(Empresa.class, (String) key);
+                Field field = ReflectionUtils.findField(Perfil.class, (String) key);
                 field.setAccessible(true);
                 ReflectionUtils.setField(field, dbData.get(), value);
             });

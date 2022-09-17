@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Usuarios</title>
+</head>
+<body>
+<h1>Nuevo Usuario</h1>
+
+<form th:action="@{/guardarUsuario}" method="post" th:object="${usuario}">
+    <label for="nombreEmpleado">Nombre</label>
+    <input type="text" name="nombreEmpleado" th:field="*{nombreEmpleado}"><br>
+
+    <label for="documento">Documento</label>
+    <input type="number" name="documento" th:field="*{documento}"><br>
+
+    <label for="correoEmpleado">Correo</label>
+    <input type="text" name="correoEmpleado" th:field="*{correoEmpleado}"><br>
+
+
+    <label for="rol">Rol</label>
+    <select th:field = "*{rol}" name="rol">
+        <option value="0" selected>Seleccione rol</option>
+        <option th:each = "rol: ${T(com.dreamsoft.ingresosegresos.entities.Rol).values()}"
+                th:value="${rol}"
+                th:text="${rol}"></option>
+    </select><br>
+
+    <label for="empresa">Empresa</label>
+    <select th:field = "*{empresa.id}" name="empresa">
+        <option value="0" selected>Seleccione empresa</option>
+        <option th:each="empresa : ${empresas}"
+                th:value="${empresa.id}"
+                th:text="${empresa.nombreEmpresa}">
+
+        </option>
+    </select><br>
+
+    <input type="submit" name="guardar" value="Guardar">
+
+</form>
+
+</body>
+</html>

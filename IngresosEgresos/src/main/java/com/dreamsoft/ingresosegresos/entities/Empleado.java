@@ -20,7 +20,8 @@ public class Empleado {
     @Column(name = "correo_empleado", unique = true)
     private String correoEmpleado;
     @Column(name = "rol")
-    private Rol rol;
+    private String rol;
+
     @Column(name = "fecha_cr")
     private LocalDate fechaCr;
     @Column(name = "fecha_upd")
@@ -49,7 +50,7 @@ public class Empleado {
         return correoEmpleado;
     }
 
-    public Rol getRol() {
+    public String getRol() {
         return rol;
     }
 
@@ -69,7 +70,7 @@ public class Empleado {
         this.correoEmpleado = correoEmpleado;
             }
 
-    public void setRol(Rol rol) {
+    public void setRol(String rol) {
         this.rol = rol;
             }
 
@@ -125,7 +126,7 @@ public class Empleado {
                 ", rol=" + rol +
                 ", fechaCr=" + fechaCr +
                 ", fechaUpd=" + fechaUpd +
-                ", empresa=" + empresa +
+                //", empresa=" + empresa.getId() +
                 //", perfil=" + perfil +
                 ", movimientos=" + movimientos +
                 '}';

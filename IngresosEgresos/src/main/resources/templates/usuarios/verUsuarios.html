@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Usuarios</title>
+</head>
+<body>
+<h1>Lista de usuarios</h1>
+<button><a th:href="@{/usuarios/crearUsuario}">Nuevo Usuario</a> </button>
+<table border="1">
+    <tr>
+        <th>Nombre</th>
+        <th>Documento</th>
+        <th>Correo</th>
+        <th>Rol</th>
+        <th>Empresa</th>
+        <th>Fecha Creacion</th>
+        <th>Fecha Actualizacion</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+    </tr>
+    <tr th:each="usuario : ${usuarios}">
+        <td th:text = "${usuario.nombreEmpleado}">Nombre</td>
+        <td th:text = "${usuario.documento}">Documento</td>
+        <td th:text = "${usuario.correoEmpleado}">Correo</td>
+        <td th:text = "${usuario.rol}">Rol</td>
+        <td th:text = "${usuario.empresa.nombreEmpresa}">Rol</td>
+        <td th:text = "${usuario.fechaCr}">Fecha Creacion</td>
+        <td th:text = "${usuario.fechaUpd}">Fecha Actualizacion</td>
+        <td><button><a th:href="@{/usuarios/editarUsuario}">Editar</a> </button></td>
+        <td><button><a th:href="@{/usuarios/eliminarUsuario}">Eliminar</a> </button></td>
+    </tr>
+</table>
+</body>
+</html>

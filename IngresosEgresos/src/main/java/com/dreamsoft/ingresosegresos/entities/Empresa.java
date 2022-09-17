@@ -1,9 +1,11 @@
 package com.dreamsoft.ingresosegresos.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -20,6 +22,7 @@ public class Empresa {
     private String telefonoEmpresa;
     @Column(name = "NIT", unique = true)
     private int NIT;
+
     @Column(name = "fecha_cr")
     private LocalDate fechaCr;
     @Column(name = "fecha_upd")

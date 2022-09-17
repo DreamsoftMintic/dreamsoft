@@ -17,7 +17,7 @@ public class UsuarioController{
     }
     //controlador Get, retorna todos los campos(filas) de la tabla
     @GetMapping("/users")
-    public List<Empleado> getUsuario() {
+    public List<Empleado> getUsuarios() {
         return this.service.getUsuarios();
     }
     //Controlador Get con id especifico, retorna solo un campo(fila) de la tabla

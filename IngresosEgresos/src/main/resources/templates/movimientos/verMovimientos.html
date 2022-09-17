@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movimientos</title>
+</head>
+<body>
+<h1>Lista de movimientos</h1>
+<button><a th:href="@{/movimientos/crearMovimiento}">Nuevo Movimiento</a> </button>
+<table border="1">
+    <tr>
+        <th>Concepto</th>
+        <th>Monto</th>
+        <th>Empleado responsable</th>
+        <th>Fecha Movimiento</th>
+        <th>Fecha Creacion</th>
+        <th>Fecha Actualizacion</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+    </tr>
+    <tr th:each="movimiento : ${movimientos}">
+        <td th:text = "${movimiento.concepto}">Concepto</td>
+        <td th:text = "${movimiento.monto}">Monto</td>
+        <td th:text = "${movimiento.empleado.nombreEmpleado}">Monto</td>
+        <td th:text = "${movimiento.fechaMovimiento}">Fecha Movimiento</td>
+        <td th:text = "${movimiento.fechaCr}">Fecha Creacion</td>
+        <td th:text = "${movimiento.fechaUpd}">Fecha Actualizacion</td>
+        <td><button><a th:href="@{/movimientos/editarMovimiento}">Editar</a> </button></td>
+        <td><button><a th:href="@{/movimientos/eliminarMovimiento}">Eliminar</a> </button></td>
+    </tr>
+</table>
+
+</body>
+</html>

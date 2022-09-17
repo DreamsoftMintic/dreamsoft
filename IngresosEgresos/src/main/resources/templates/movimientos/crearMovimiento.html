@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movimientos</title>
+</head>
+<body>
+<h1>Nuevo movimiento</h1>
+<form th:action="@{/guardarMovimiento}" method="post" th:object="${movimiento}">
+    <label for="concepto">Concepto</label>
+    <input type="text" name="concepto" th:field="*{concepto}"><br>
+    <label for="monto">Monto</label>
+    <input type="text" name="monto" th:field="*{monto}"><br>
+    <label for="fechaMov">Fecha Movimiento</label>
+    <input type="date" name="fechaMov" th:field="*{fechaMovimiento}"><br>
+
+    <label for="empresa">Empresa</label>
+    <select th:field = "*{empresa.id}" name="empresa">
+        <option value="0" selected>Seleccione empresa</option>
+        <option th:each="empresa : ${empresas}"
+                th:value="${empresa.id}"
+                th:text="${empresa.nombreEmpresa}">
+
+        </option>
+    </select><br>
+
+    <label for="usuario">Empleado responsable</label>
+    <select th:field = "*{empleado.id}" name="usuario">
+        <option value="0" selected>Seleccione empleado</option>
+        <option th:each="usuario : ${usuarios}"
+                th:value="${usuario.id}"
+                th:text="${usuario.nombreEmpleado}">
+
+        </option>
+    </select><br>
+
+    <input type="submit" name="guardar" value="Guardar">
+</form>
+
+</body>
+</html>

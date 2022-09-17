@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Empresas</title>
+</head>
+<body>
+    <h1>Nueva empresa</h1>
+    <form th:action="@{/guardarEmpresa}" method="post" th:object="${empresa}">
+        <label for="nombreEmpresa">Nombre</label>
+        <input type="text" name="nombreEmpresa" th:field="*{nombreEmpresa}"><br>
+        <label for="NIT">NIT</label>
+        <input type="number" name="NIT" th:field="*{NIT}"><br>
+        <label for="direccionEmpresa">Direccion</label>
+        <input type="text" name="direccionEmpresa" th:field="*{direccionEmpresa}"><br>
+        <label for="telefonoEmpresa">Telefono</label>
+        <input type="text" name="telefonoEmpresa" th:field="*{telefonoEmpresa}"><br>
+        <label for="fechaCr">Fecha Creacion</label>
+        <input type="date" name="fechaCr" th:field="*{fechaCr}"><br>
+
+        <input type="submit" name="guardar" value="Guardar">
+    </form>
+
+
+
+</body>
+</html>

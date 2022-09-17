@@ -1,9 +1,11 @@
 package com.dreamsoft.ingresosegresos.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "movimiento_dinero")
@@ -15,8 +17,9 @@ public class MovimientoDinero {
     private double monto;
     @Column(name = "concepto")
     private String concepto;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(name = "fecha_movimiento")
-    private LocalDate fechaMovimiento;
+    private Date fechaMovimiento;
     @Column(name = "fecha_cr")
     private LocalDate fechaCr;
     @Column(name = "fecha_upd")
@@ -42,7 +45,7 @@ public class MovimientoDinero {
         return concepto;
     }
 
-    public LocalDate getFechaMovimiento() {
+    public Date getFechaMovimiento() {
         return fechaMovimiento;
     }
 
@@ -67,7 +70,7 @@ public class MovimientoDinero {
         this.concepto = concepto;
      }
 
-    public void setFechaMovimiento(LocalDate fechaMovimiento) {
+    public void setFechaMovimiento(Date fechaMovimiento) {
         this.fechaMovimiento = fechaMovimiento;
     }
 

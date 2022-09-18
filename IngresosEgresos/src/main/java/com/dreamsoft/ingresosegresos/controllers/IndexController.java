@@ -15,7 +15,7 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model){
         LOG.log(Level.INFO,"index");
-        var mensaje = "Sistema de gestion";
+        var mensaje = "Bienvenido al Sistema de gestion de ingresos y egresos";
         model.addAttribute("mensaje", mensaje);
         return "index";
     }

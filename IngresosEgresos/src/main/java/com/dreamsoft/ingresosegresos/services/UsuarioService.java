@@ -57,6 +57,7 @@ public class UsuarioService {
             e.setFechaCr(empleado.getFechaCr());
             e.setFechaUpd(empleado.getFechaUpd());
             e.setCorreoEmpleado(empleado.getCorreoEmpleado());
+            e.setEstado(empleado.isEstado());
             e.setMovimientos(empleado.getMovimientos());
             e.setEmpresa(empleado.getEmpresa());
             this.repository.save(e);

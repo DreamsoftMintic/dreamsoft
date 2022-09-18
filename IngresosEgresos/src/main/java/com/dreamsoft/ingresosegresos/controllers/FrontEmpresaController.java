@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDate;
@@ -18,14 +19,14 @@ import java.util.logging.Logger;
 public class FrontEmpresaController {
 
     @Autowired
-    EmpresaService service;
+    EmpresaService empresaService;
 
     private final Logger LOG = Logger.getLogger(""+FrontEmpresaController.class);
 
     @GetMapping("/empresas/verEmpresas")
     public String viewEmpresas(Model model){
         LOG.log(Level.INFO,"viewEmpresas");
-        List<Empresa> empresas = this.service.getEmpresas();
+        List<Empresa> empresas = empresaService.getEmpresas();
         model.addAttribute("empresas", empresas);
         return "empresas/verEmpresas";
     }
@@ -44,20 +45,32 @@ public class FrontEmpresaController {
         System.out.println(empresa.toString());
         empresa.setFechaCr(LocalDate.now());
         empresa.setFechaUpd(LocalDate.now());
-        empresa = this.service.createEmpresa(empresa);
+        empresa = empresaService.createEmpresa(empresa);
         return "redirect:/empresas/verEmpresas";
     }
 
-    @GetMapping("/empresas/editarEmpresa")
-    public String editEmpresa(Model model){
+    @GetMapping("/empresas/editarEmpresa/{id}")
+    public String editEmpresa(@PathVariable("id") Long id, Model model){
         LOG.log(Level.INFO,"editEmpresa");
+        Empresa empresa = empresaService.getEmpresa(id);
+        model.addAttribute("empresa",empresa);
         return "empresas/editarEmpresa";
     }
 
-    @GetMapping("/empresas/eliminarEmpresa")
-    public String deleteEmpresa(Model model){
+    @PostMapping("/actualizarEmpresa/{id}")
+    public String updateEmpresa(@PathVariable("id") Long id, Empresa empresa){
+        LOG.log(Level.INFO,"updateEmpresa");
+        System.out.println(empresa.toString());
+        empresa.setFechaUpd(LocalDate.now());
+        empresa = empresaService.updateEmpresa(id, empresa);
+        return "redirect:/empresas/verEmpresas";
+    }
+
+    @GetMapping("/empresas/eliminarEmpresa/{id}")
+    public String deleteEmpresa(@PathVariable("id") Long id, Model model){
         LOG.log(Level.INFO,"deleteEmpresa");
-        return "empresas/eliminarEmpresa";
+        empresaService.deleteEmpresa(id);
+        return "redirect:/empresas/verEmpresas";
     }
 
 

@@ -28,8 +28,8 @@
         <td th:text = "${movimiento.fechaMovimiento}">Fecha Movimiento</td>
         <td th:text = "${movimiento.fechaCr}">Fecha Creacion</td>
         <td th:text = "${movimiento.fechaUpd}">Fecha Actualizacion</td>
-        <td><button><a th:href="@{/movimientos/editarMovimiento}">Editar</a> </button></td>
-        <td><button><a th:href="@{/movimientos/eliminarMovimiento}">Eliminar</a> </button></td>
+        <td><button><a th:href="@{/movimientos/editarMovimiento/}+${movimiento.id}">Editar</a> </button></td>
+        <td><button><a th:href="@{/movimientos/eliminarMovimiento/}+${movimiento.id}">Eliminar</a> </button></td>
     </tr>
 </table>
 

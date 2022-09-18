@@ -27,6 +27,9 @@ public class Empleado {
     @Column(name = "fecha_upd")
     private LocalDate fechaUpd;
 
+    @Column(name = "estado")
+    private boolean estado;
+
     @ManyToOne
     @JoinColumn(name = "empresa_id", referencedColumnName = "id")
     private Empresa empresa;
@@ -116,6 +119,14 @@ public class Empleado {
         this.movimientos = movimientos;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     @Override
     public String toString() {
         return "Empleado{" +
@@ -126,6 +137,7 @@ public class Empleado {
                 ", rol=" + rol +
                 ", fechaCr=" + fechaCr +
                 ", fechaUpd=" + fechaUpd +
+                ", estado=" + estado +
                 //", empresa=" + empresa.getId() +
                 //", perfil=" + perfil +
                 ", movimientos=" + movimientos +

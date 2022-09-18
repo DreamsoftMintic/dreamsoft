@@ -9,5 +9,22 @@
 </head>
 <body>
 <h1>Editar empresa</h1>
+
+<form th:action="@{/actualizarEmpresa/}+${empresa.id}" method="post" th:object="${empresa}">
+    <label for="nombreEmpresa">Nombre</label>
+    <input type="text" name="nombreEmpresa" th:field="*{nombreEmpresa}"><br>
+    <label for="NIT">NIT</label>
+    <input type="number" name="NIT" th:field="*{NIT}"><br>
+    <label for="direccionEmpresa">Direccion</label>
+    <input type="text" name="direccionEmpresa" th:field="*{direccionEmpresa}"><br>
+    <label for="telefonoEmpresa">Telefono</label>
+    <input type="text" name="telefonoEmpresa" th:field="*{telefonoEmpresa}"><br>
+
+    <input type="submit" name="guardar" value="Guardar">
+
+</form>
+<button><a th:href="@{/empresas/verEmpresas}">Atras</a> </button>
+
+
 </body>
 </html>

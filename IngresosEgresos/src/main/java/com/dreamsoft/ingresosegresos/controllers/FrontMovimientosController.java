@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDate;
@@ -23,7 +24,7 @@ import java.util.logging.Logger;
 public class FrontMovimientosController {
 
     @Autowired
-    MovimientoService service;
+    MovimientoService movimientoService;
 
     @Autowired
     UsuarioService usuarioService;
@@ -31,12 +32,14 @@ public class FrontMovimientosController {
     @Autowired
     EmpresaService empresaService;
 
+
+
     private final Logger LOG = Logger.getLogger(""+FrontMovimientosController.class);
 
     @GetMapping("/movimientos/verMovimientos")
     public String viewMovimientos(Model model){
         LOG.log(Level.INFO,"viewMovimientos");
-        List<MovimientoDinero> movimientos = this.service.getMovimientos();
+        List<MovimientoDinero> movimientos = movimientoService.getMovimientos();
         model.addAttribute("movimientos", movimientos);
         return "movimientos/verMovimientos";
     }
@@ -62,19 +65,38 @@ public class FrontMovimientosController {
         System.out.println(movimiento.toString());
         movimiento.setFechaCr(LocalDate.now());
         movimiento.setFechaUpd(LocalDate.now());
-        movimiento = this.service.createMovimiento(movimiento);
+        movimiento = movimientoService.createMovimiento(movimiento);
         return "redirect:/movimientos/verMovimientos";
     }
 
-    @GetMapping("/movimientos/editarMovimiento")
-    public String editMovimiento(Model model){
+    @GetMapping("/movimientos/editarMovimiento/{id}")
+    public String editMovimiento(@PathVariable("id") Long id, Model model){
         LOG.log(Level.INFO,"editMovimiento");
+        //movimiento
+        MovimientoDinero movimiento = movimientoService.getMovimiento(id);
+        model.addAttribute("movimiento",movimiento);
+        //usuario
+        List<Empleado> usuarios = usuarioService.getUsuarios();
+        model.addAttribute("usuarios",usuarios);
+        //empresa
+        List<Empresa> empresas = empresaService.getEmpresas();
+        model.addAttribute("empresas",empresas);
         return "movimientos/editarMovimiento";
     }
 
-    @GetMapping("/movimientos/eliminarMovimiento")
-    public String deleteMovimiento(Model model){
+    @PostMapping("/actualizarMovimiento/{id}")
+    public String updateMovimiento(@PathVariable("id") Long id, MovimientoDinero movimiento){
+        LOG.log(Level.INFO,"updateMovimiento");
+        System.out.println(movimiento.toString());
+        movimiento.setFechaUpd(LocalDate.now());
+        movimiento = movimientoService.updateMovimiento(id, movimiento);
+        return "redirect:/movimientos/verMovimientos";
+    }
+
+    @GetMapping("/movimientos/eliminarMovimiento/{id}")
+    public String deleteMovimiento(@PathVariable("id") Long id, Model model){
         LOG.log(Level.INFO,"deleteMovimiento");
-        return "movimientos/eliminarMovimiento";
+        movimientoService.deleteMovimiento(id);
+        return "redirect:/movimientos/verMovimientos";
     }
 }

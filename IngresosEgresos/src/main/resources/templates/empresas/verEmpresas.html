@@ -28,8 +28,8 @@
         <td th:text = "${empresa.telefonoEmpresa}">Rol</td>
         <td th:text = "${empresa.fechaCr}">Fecha Creacion</td>
         <td th:text = "${empresa.fechaUpd}">Fecha Actualizacion</td>
-        <td><button><a th:href="@{/empresas/editarEmpresa}">Editar</a> </button></td>
-        <td><button><a th:href="@{/empresas/eliminarEmpresa}">Eliminar</a> </button></td>
+        <td><button><a th:href="@{/empresas/editarEmpresa/}+${empresa.id}">Editar</a> </button></td>
+        <td><button><a th:href="@{/empresas/eliminarEmpresa/}+${empresa.id}">Eliminar</a> </button></td>
     </tr>
 </table>
 

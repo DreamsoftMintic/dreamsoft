@@ -5,11 +5,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Usuarios</title>
+    <title>Usuarios inactivos</title>
 </head>
 <body>
-<h1>Lista de usuarios</h1>
-<button><a th:href="@{/usuarios/crearUsuario}">Nuevo Usuario</a> </button>
+<h1>Lista de usuarios inactivos</h1>
+
 <table border="1">
     <tr>
         <th>Nombre</th>
@@ -19,10 +19,10 @@
         <th>Empresa</th>
         <th>Fecha Creacion</th>
         <th>Fecha Actualizacion</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
+        <th>Activar</th>
+
     </tr>
-    <tr th:each="usuario : ${usuarios}" th:if="${usuario.estado}">
+    <tr th:each="usuario : ${usuarios}" th:if="!${usuario.estado}">
         <td th:text = "${usuario.nombreEmpleado}">Nombre</td>
         <td th:text = "${usuario.documento}">Documento</td>
         <td th:text = "${usuario.correoEmpleado}">Correo</td>
@@ -30,10 +30,8 @@
         <td th:text = "${usuario.empresa.nombreEmpresa}">Empresa</td>
         <td th:text = "${usuario.fechaCr}">Fecha Creacion</td>
         <td th:text = "${usuario.fechaUpd}">Fecha Actualizacion</td>
-        <td><button><a th:href="@{/usuarios/editarUsuario/}+${usuario.id}">Editar</a> </button></td>
-        <td><button><a th:href="@{/usuarios/desactivarUsuario/}+${usuario.id}">Desactivar</a> </button></td>
+        <td><button><a th:href="@{/usuarios/activarUsuario/}+${usuario.id}">Activar</a> </button></td>
     </tr>
 </table>
-<button><a th:href="@{/usuarios/verUsuariosInactivos}">Usuarios Inactivos</a> </button>
 </body>
 </html>

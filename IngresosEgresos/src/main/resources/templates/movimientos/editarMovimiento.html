@@ -13,37 +13,48 @@
     <nav th:replace="layout/plantilla :: nav"></nav>
     <div class="container">
         <h2 class="text-center my-3">Editar movimiento</h2>
-        <form th:action="@{/actualizarMovimiento/}+${movimiento.id}" method="post" th:object="${movimiento}">
-            <label for="concepto">Concepto</label>
-            <input type="text" name="concepto" th:field="*{concepto}"><br>
-            <label for="monto">Monto</label>
-            <input type="text" name="monto" th:field="*{monto}"><br>
-            <label for="fechaMov">Fecha Movimiento</label>
-            <input type="date" name="fechaMov" th:field="*{fechaMovimiento}"><br>
+        <form class="row g-3" th:action="@{/actualizarMovimiento/}+${movimiento.id}" method="post" th:object="${movimiento}">
+            <div class="col-12">
+                <label for="concepto" class="form-label">Concepto</label>
+                <input type="text" class="form-control" name="concepto" th:field="*{concepto}">
+            </div>
+            <div class="col-6">
+                <label for="monto" class="form-label">Monto</label>
+                <input type="text" class="form-control" name="monto" th:field="*{monto}">
+            </div>
+            <div class="col-6">
+                <label for="fechaMov" class="form-label">Fecha Movimiento</label>
+                <input type="date" class="form-control" name="fechaMov" th:field="*{fechaMovimiento}">
+            </div>
+            <div class="col-6">
+                <label for="empresa" class="form-label">Empresa</label>
+                <select class="form-select" th:field = "*{empresa.id}" name="empresa">
+                    <option value="0" selected>Seleccione empresa</option>
+                    <option th:each="empresa : ${empresas}"
+                            th:value="${empresa.id}"
+                            th:text="${empresa.nombreEmpresa}">
 
-            <label for="empresa">Empresa</label>
-            <select th:field = "*{empresa.id}" name="empresa">
-                <option value="0" selected>Seleccione empresa</option>
-                <option th:each="empresa : ${empresas}"
-                        th:value="${empresa.id}"
-                        th:text="${empresa.nombreEmpresa}">
+                    </option>
+                </select>
+            </div>
+            <div class="col-6">
+                <label for="usuario" class="form-label">Empleado responsable</label>
+                <select class="form-select" th:field = "*{empleado.id}" name="usuario">
+                    <option value="0" selected>Seleccione empleado</option>
+                    <option th:each="usuario : ${usuarios}"
+                            th:value="${usuario.id}"
+                            th:text="${usuario.nombreEmpleado}">
 
-                </option>
-            </select><br>
-
-            <label for="usuario">Empleado responsable</label>
-            <select th:field = "*{empleado.id}" name="usuario">
-                <option value="0" selected>Seleccione empleado</option>
-                <option th:each="usuario : ${usuarios}"
-                        th:value="${usuario.id}"
-                        th:text="${usuario.nombreEmpleado}">
-
-                </option>
-            </select><br>
-
-            <input type="submit" name="guardar" value="Guardar">
+                    </option>
+                </select>
+            </div>
+            <div class="col-6">
+                <input type="submit" class="btn btn-primary" name="guardar" value="Guardar">
+            </div>
+            <div class="col-6">
+                <a class="btn btn-danger " role="button" th:href="@{/movimientos/verMovimientos}">Cancelar</a>
+            </div>
         </form>
-        <button><a th:href="@{/movimientos/verMovimientos}">Atras</a> </button>
     </div>
     <footer th:replace="layout/plantilla :: footer"></footer>
 </body>

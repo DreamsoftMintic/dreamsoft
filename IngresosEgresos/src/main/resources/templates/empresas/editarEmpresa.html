@@ -14,20 +14,30 @@
     <div class="container">
         <h2 class="text-center my-3">Editar empresa</h2>
 
-        <form th:action="@{/actualizarEmpresa/}+${empresa.id}" method="post" th:object="${empresa}">
-            <label for="nombreEmpresa">Nombre</label>
-            <input type="text" name="nombreEmpresa" th:field="*{nombreEmpresa}"><br>
-            <label for="NIT">NIT</label>
-            <input type="number" name="NIT" th:field="*{NIT}"><br>
-            <label for="direccionEmpresa">Direccion</label>
-            <input type="text" name="direccionEmpresa" th:field="*{direccionEmpresa}"><br>
-            <label for="telefonoEmpresa">Telefono</label>
-            <input type="text" name="telefonoEmpresa" th:field="*{telefonoEmpresa}"><br>
-
-            <input type="submit" name="guardar" value="Guardar">
-
+        <form class="row g-3" th:action="@{/actualizarEmpresa/}+${empresa.id}" method="post" th:object="${empresa}">
+            <div class="col-12">
+                <label for="nombreEmpresa" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="nombreEmpresa" th:field="*{nombreEmpresa}">
+            </div>
+            <div class="col-12">
+                <label for="NIT" class="form-label">NIT</label>
+                <input type="number" class="form-control" name="NIT" th:field="*{NIT}">
+            </div>
+            <div class="col-12">
+                <label for="direccionEmpresa" class="form-label">Dirección</label>
+                <input type="text" class="form-control" name="direccionEmpresa" th:field="*{direccionEmpresa}">
+            </div>
+            <div class="col-12">
+                <label for="telefonoEmpresa" class="form-label">Telefono</label>
+                <input type="text" class="form-control" name="telefonoEmpresa" th:field="*{telefonoEmpresa}"><br>
+            </div>
+            <div class="col-6">
+                <input type="submit" class="btn btn-primary" name="guardar" value="Guardar">
+            </div>
+            <div class="col-6">
+                <a class="btn btn-danger " role="button" th:href="@{/empresas/verEmpresas}">Cancelar</a>
+            </div>
         </form>
-        <button><a th:href="@{/empresas/verEmpresas}">Atras</a> </button>
     </div>
 <footer th:replace="layout/plantilla :: footer"></footer>
 </body>

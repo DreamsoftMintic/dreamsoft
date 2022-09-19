@@ -14,39 +14,46 @@
     <div class="container">
         <h2 class="text-center my-3">Editar usuario</h2>
 
-        <form th:action="@{/actualizarUsuario/}+${usuario.id}" method="post" th:object="${usuario}">
-            <label for="nombreEmpleado">Nombre</label>
-            <input type="text" name="nombreEmpleado" th:field="*{nombreEmpleado}"><br>
+        <form class="row g-3" th:action="@{/actualizarUsuario/}+${usuario.id}" method="post" th:object="${usuario}">
+            <div class="col-12">
+                <label for="nombreEmpleado" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="nombreEmpleado" th:field="*{nombreEmpleado}"><br>
+            </div>
+            <div class="col-12">
+                <label for="documento" class="form-label">Documento</label>
+                <input type="number" class="form-control" name="documento" th:field="*{documento}"><br>
+            </div>
+            <div class="col-12">
+                <label for="correoEmpleado" class="form-label">Correo</label>
+                <input type="text" class="form-control" name="correoEmpleado" th:field="*{correoEmpleado}"><br>
+            </div>
+            <div class="col-6">
+                <label for="rol" class="form-label">Rol</label>
+                <select class="form-select" th:field = "*{rol}" name="rol">
+                    <option value="0" selected>Seleccione rol</option>
+                    <option th:each = "rol: ${T(com.dreamsoft.ingresosegresos.entities.Rol).values()}"
+                            th:value="${rol}"
+                            th:text="${rol}"></option>
+                </select>
+            </div>
+            <div class="col-6">
+                <label for="empresa" class="form-label">Empresa</label>
+                <select class="form-select" th:field = "*{empresa.id}" name="empresa">
+                    <option value="0" selected>Seleccione empresa</option>
+                    <option th:each="empresa : ${empresas}"
+                            th:value="${empresa.id}"
+                            th:text="${empresa.nombreEmpresa}">
 
-            <label for="documento">Documento</label>
-            <input type="number" name="documento" th:field="*{documento}"><br>
-
-            <label for="correoEmpleado">Correo</label>
-            <input type="text" name="correoEmpleado" th:field="*{correoEmpleado}"><br>
-
-
-            <label for="rol">Rol</label>
-            <select th:field = "*{rol}" name="rol">
-                <option value="0" selected>Seleccione rol</option>
-                <option th:each = "rol: ${T(com.dreamsoft.ingresosegresos.entities.Rol).values()}"
-                        th:value="${rol}"
-                        th:text="${rol}"></option>
-            </select><br>
-
-            <label for="empresa">Empresa</label>
-            <select th:field = "*{empresa.id}" name="empresa">
-                <option value="0" selected>Seleccione empresa</option>
-                <option th:each="empresa : ${empresas}"
-                        th:value="${empresa.id}"
-                        th:text="${empresa.nombreEmpresa}">
-
-                </option>
-            </select><br>
-
-            <input type="submit" name="guardar" value="Guardar">
-
+                    </option>
+                </select>
+            </div>
+            <div class="col-6">
+                <input type="submit" class="btn btn-primary" name="guardar" value="Guardar">
+            </div>
+            <div class="col-6">
+                <a class="btn btn-danger" role="button" th:href="@{/usuarios/verUsuarios}">Cancelar</a>
+            </div>
         </form>
-        <button><a th:href="@{/usuarios/verUsuarios}">Atras</a> </button>
     </div>
     <footer th:replace="layout/plantilla :: footer"></footer>
 </body>

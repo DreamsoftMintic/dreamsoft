@@ -1,5 +1,7 @@
 package com.dreamsoft.ingresosegresos.entities;
 
+//fue decidido que esta entidad no es necesaria y se va a manejar la autentificacion desde la entidad empleado
+/*
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -21,7 +23,7 @@ public class Perfil {
     @Column(name = "fecha_upd")
     private LocalDate fechaUpd;
 
-    @OneToOne(targetEntity = Empleado.class, mappedBy = "perfil", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //@OneToOne(targetEntity = Empleado.class, mappedBy = "perfil", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Empleado empleado;
 
     public Perfil(){
@@ -76,7 +78,7 @@ public class Perfil {
         this.fechaUpd = fechaUpd;
     }
 
-    @JsonManagedReference(value = "perfil-empleado")
+    //@JsonManagedReference(value = "perfil-empleado")
     public Empleado getEmpleado() {
         return empleado;
     }
@@ -98,3 +100,4 @@ public class Perfil {
                 '}';
     }
 }
+*/

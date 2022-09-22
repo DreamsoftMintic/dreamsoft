@@ -1,5 +1,6 @@
 package com.dreamsoft.ingresosegresos.controllers;
-
+//fue decidido que esta entidad no es necesaria y se va a manejar la autentificacion desde la entidad empleado
+/*
 import com.dreamsoft.ingresosegresos.entities.Empresa;
 import com.dreamsoft.ingresosegresos.entities.Perfil;
 import com.dreamsoft.ingresosegresos.services.PerfilService;
@@ -50,3 +51,4 @@ public class PerfilController {
 
 
 }
+ */

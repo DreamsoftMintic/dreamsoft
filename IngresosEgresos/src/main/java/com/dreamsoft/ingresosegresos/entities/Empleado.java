@@ -15,10 +15,16 @@ public class Empleado {
     private long id;
     @Column(name = "nombre_empleado")
     private String nombreEmpleado;
-    @Column(name = "documento")
+    @Column(name = "documento", unique = true)
     private int documento;
     @Column(name = "correo_empleado", unique = true)
     private String correoEmpleado;
+
+    @Column(name = "pass")
+    private String pass;
+
+    @Column(name = "telefono")
+    private String telefono;
     @Column(name = "rol")
     private String rol;
 
@@ -33,11 +39,11 @@ public class Empleado {
     @ManyToOne
     @JoinColumn(name = "empresa_id", referencedColumnName = "id")
     private Empresa empresa;
-
+/*
     @OneToOne
     @JoinColumn(name = "perfil_id", referencedColumnName = "id" )
     private Perfil perfil;
-
+*/
     @OneToMany(targetEntity = MovimientoDinero.class, mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<MovimientoDinero> movimientos;
 
@@ -101,7 +107,7 @@ public class Empleado {
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
-
+/*
     @JsonBackReference(value = "perfil-empleado")
     public Perfil getPerfil() {
         return perfil;
@@ -110,7 +116,7 @@ public class Empleado {
     public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
     }
-
+*/
     public List<MovimientoDinero> getMovimientos() {
         return movimientos;
     }
@@ -125,6 +131,22 @@ public class Empleado {
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     @Override

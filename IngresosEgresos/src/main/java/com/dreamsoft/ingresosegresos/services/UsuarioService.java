@@ -60,6 +60,8 @@ public class UsuarioService {
             e.setEstado(empleado.isEstado());
             e.setMovimientos(empleado.getMovimientos());
             e.setEmpresa(empleado.getEmpresa());
+            e.setTelefono(empleado.getTelefono());
+            e.setPass(empleado.getPass());
             this.repository.save(e);
             return e;
         }

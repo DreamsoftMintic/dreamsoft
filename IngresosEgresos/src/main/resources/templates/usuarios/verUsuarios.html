@@ -22,6 +22,8 @@
                 <th>Nombre</th>
                 <th>Documento</th>
                 <th>Correo</th>
+                <th>Contraseña</th>
+                <th>Telefono</th>
                 <th>Rol</th>
                 <th>Empresa</th>
                 <th>Fecha Creacion</th>
@@ -33,6 +35,8 @@
                 <td th:text = "${usuario.nombreEmpleado}">Nombre</td>
                 <td th:text = "${usuario.documento}">Documento</td>
                 <td th:text = "${usuario.correoEmpleado}">Correo</td>
+                <td th:text = "${usuario.pass}">Contraseña</td>
+                <td th:text = "${usuario.telefono}">Telefono</td>
                 <td th:text = "${usuario.rol}">Rol</td>
                 <td th:text = "${usuario.empresa.nombreEmpresa}">Empresa</td>
                 <td th:text = "${usuario.fechaCr}">Fecha Creacion</td>

@@ -23,10 +23,19 @@
                 <label for="documento" class="form-label">Documento</label>
                 <input type="number" class="form-control" name="documento" th:field="*{documento}"><br>
             </div>
-            <div class="col-12">
+            <div class="col-6">
                 <label for="correoEmpleado" class="form-label">Correo</label>
                 <input type="text" class="form-control" name="correoEmpleado" th:field="*{correoEmpleado}"><br>
             </div>
+            <div class="col-6">
+                <label for="pass"class="form-label">Contraseña</label>
+                <input type="text"  class="form-control" name="pass" th:field="*{pass}">
+            </div>
+            <div class="col-12">
+                <label for="telefono"class="form-label">Telefono</label>
+                <input type="text"  class="form-control" name="telefono" th:field="*{telefono}">
+            </div>
+
             <div class="col-6">
                 <label for="rol" class="form-label">Rol</label>
                 <select class="form-select" th:field = "*{rol}" name="rol">
@@ -47,6 +56,7 @@
                     </option>
                 </select>
             </div>
+            <input type="hidden" th:value="${usuario.estado}" th:attr="name='estado'"/>
             <div class="col-6">
                 <input type="submit" class="btn btn-primary" name="guardar" value="Guardar">
             </div>

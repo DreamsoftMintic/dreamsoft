@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -46,6 +47,7 @@ public class MovimientoService {
             e.setFechaMovimiento(movimientoDinero.getFechaMovimiento());
             e.setFechaCr(movimientoDinero.getFechaCr());
             e.setFechaUpd(movimientoDinero.getFechaUpd());
+            e.setEmpleado(movimientoDinero.getEmpleado());
             this.repository.save(e);
             return  e;
 
@@ -73,4 +75,31 @@ public class MovimientoService {
 
         return null;
     }
+
+    public ArrayList<MovimientoDinero> obtenerPorEmpleado(Long id) { //Obterner teniendo en cuenta el id del empleado
+        return this.repository.findByEmpleado(id);
+    }
+
+    public ArrayList<MovimientoDinero> obtenerPorEmpresa(Long id) { //Obtener movimientos teniendo en cuenta el id de la empresa a la que pertencen los empleados que la registraron
+        return this.repository.findByEmpresa(id);
+    }
+
+    //Servicio para ver la suma de todos los montos
+    public Long obtenerSumaMontos(){
+        return this.repository.SumarMonto();
+    }
+
+    //Servicio para ver la suma de los montos por empleado
+    public Long MontosPorEmpleado(Long id){
+        return this.repository.MontosPorEmpleado(id);
+    }
+
+    //Servicio para ver la suma de los montos por empresa
+    public Long MontosPorEmpresa(Long id){
+        return this.repository.MontosPorEmpresa(id);
+    }
+
+
+
+
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -87,5 +88,10 @@ public class UsuarioService {
         }
         return null;
 
+    }
+
+    //Metodo para buscar empleados por empresa
+    public ArrayList<Empleado> obtenerPorEmpresa(Long id){
+        return this.repository.findByEmpresa(id);
     }
 }

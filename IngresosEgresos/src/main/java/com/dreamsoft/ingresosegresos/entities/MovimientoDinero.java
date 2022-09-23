@@ -24,13 +24,19 @@ public class MovimientoDinero {
     private LocalDate fechaCr;
     @Column(name = "fecha_upd")
     private LocalDate fechaUpd;
-
+/*
     @ManyToOne
     @JoinColumn(name = "empresa_id", referencedColumnName = "id")
     private Empresa empresa;
+
+ */
+
     @ManyToOne
     @JoinColumn(name = "empleado_id", referencedColumnName = "id")
     private Empleado empleado;
+
+    @Column(name = "empresa_id")
+    private long empresaId;
 
     public MovimientoDinero(){
 
@@ -89,7 +95,7 @@ public class MovimientoDinero {
     public void setFechaUpd(LocalDate fechaUpd) {
         this.fechaUpd = fechaUpd;
     }
-
+/*
     @JsonBackReference(value = "empresa-movimiento")
     public Empresa getEmpresa() {
         return empresa;
@@ -98,9 +104,17 @@ public class MovimientoDinero {
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
-
+*/
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
+    }
+
+    public long getEmpresaId() {
+        return empresaId;
+    }
+
+    public void setEmpresaId(long empresaId) {
+        this.empresaId = empresaId;
     }
 
     @Override
@@ -112,7 +126,7 @@ public class MovimientoDinero {
                 ", fechaMovimiento=" + fechaMovimiento +
                 ", fechaCr=" + fechaCr +
                 ", fechaUpd=" + fechaUpd +
-                ", empresa=" + empresa +
+                //", empresa=" + empresa +
                 ", empleado=" + empleado +
                 '}';
     }

@@ -2,7 +2,10 @@ package com.dreamsoft.ingresosegresos.controllers;
 
 import com.dreamsoft.ingresosegresos.entities.Empleado;
 import com.dreamsoft.ingresosegresos.entities.Empresa;
+import com.dreamsoft.ingresosegresos.entities.MovimientoDinero;
 import com.dreamsoft.ingresosegresos.services.EmpresaService;
+import com.dreamsoft.ingresosegresos.services.MovimientoService;
+import com.dreamsoft.ingresosegresos.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +23,12 @@ public class FrontEmpresaController {
 
     @Autowired
     EmpresaService empresaService;
+
+    @Autowired
+    UsuarioService usuarioService;
+
+    @Autowired
+    MovimientoService movimientoService;
 
     private final Logger LOG = Logger.getLogger(""+FrontEmpresaController.class);
 
@@ -39,6 +48,7 @@ public class FrontEmpresaController {
         return "empresas/crearEmpresa";
     }
 
+    //controlador accion boton guardar en pagina crear empresa
     @PostMapping("/guardarEmpresa")
     public String saveEmpresa(Empresa empresa){
         LOG.log(Level.INFO,"saveEmpresa");
@@ -57,6 +67,7 @@ public class FrontEmpresaController {
         return "empresas/editarEmpresa";
     }
 
+    //controlador accion boton guardar en pagina editar empresa
     @PostMapping("/actualizarEmpresa/{id}")
     public String updateEmpresa(@PathVariable("id") Long id, Empresa empresa){
         LOG.log(Level.INFO,"updateEmpresa");
@@ -71,6 +82,26 @@ public class FrontEmpresaController {
         LOG.log(Level.INFO,"deleteEmpresa");
         empresaService.deleteEmpresa(id);
         return "redirect:/empresas/verEmpresas";
+    }
+
+    //Filtro de movimientos por empresa
+    @GetMapping("/empresa/{id}/movimientos")
+    public String movimientosPorEmpresa(@PathVariable("id")Long id, Model model){
+        LOG.log(Level.INFO,"movimientosPorEmpresa");
+        List<MovimientoDinero> movimientos = movimientoService.obtenerPorEmpresa(id);
+        model.addAttribute("movimientos",movimientos);
+        Long sumaMonto = movimientoService.MontosPorEmpresa(id);
+        model.addAttribute("SumaMontos",sumaMonto);
+        return "movimientos/verMovimientos"; //Llamamos al HTML
+    }
+
+    //Filtro de usuarios por empresa
+    @GetMapping("/empresa/{id}/usuarios")
+    public String usuariosPorEmpresa(@PathVariable("id")Long id, Model model){
+        LOG.log(Level.INFO,"movimientosPorEmpresa");
+        List<Empleado> usuarios = usuarioService.obtenerPorEmpresa(id);
+        model.addAttribute("usuarios", usuarios);
+        return "usuarios/verUsuarios"; //Llamamos al HTML
     }
 
 

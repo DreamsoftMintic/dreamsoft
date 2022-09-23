@@ -38,6 +38,15 @@
                 <td><a class="btn btn-danger" role="button" th:href="@{/movimientos/eliminarMovimiento/}+${movimiento.id}">Eliminar</a></td>
             </tr>
         </table>
+        <!-- Campo para ver la suma de TODOS LOS MOVIMIENTOS FILTRADOS -->
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3" for="SumaMontos">Total Movimientos:</label>
+                <div class="col-md-6">
+                    <p th:text="${#numbers.formatCurrency(SumaMontos)}" class="form-control" id="SumaMontos"></p>
+                </div>
+            </div>
+        </div>
     </div>
 <footer th:replace="layout/plantilla :: footer"></footer>
 </body>

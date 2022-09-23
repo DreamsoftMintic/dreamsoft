@@ -22,9 +22,11 @@
                 <th>Nombre</th>
                 <th>NIT</th>
                 <th>Direccion</th>
-                <th>telefono</th>
+                <th>Telefono</th>
                 <th>Fecha Creacion</th>
                 <th>Fecha Actualizacion</th>
+                <th>Empleados</th>
+                <th>Movimientos</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
             </tr>
@@ -35,6 +37,8 @@
                 <td th:text = "${empresa.telefonoEmpresa}">Rol</td>
                 <td th:text = "${empresa.fechaCr}">Fecha Creacion</td>
                 <td th:text = "${empresa.fechaUpd}">Fecha Actualizacion</td>
+                <td><a class="btn btn-info" role="button" th:href="@{/empresa/{id}/usuarios(id=${empresa.id})}">Ver</a></td>
+                <td><a class="btn btn-success" role="button" th:href="@{/empresa/{id}/movimientos (id=${empresa.id})}">Ver</a></td>
                 <td><a class="btn btn-warning" role="button" th:href="@{/empresas/editarEmpresa/}+${empresa.id}">Editar</a></td>
                 <td><a class="btn btn-danger" role="button" th:href="@{/empresas/eliminarEmpresa/}+${empresa.id}">Eliminar</a></td>
             </tr>

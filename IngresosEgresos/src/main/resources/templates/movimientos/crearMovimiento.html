@@ -16,19 +16,19 @@
         <form class="row g-3" th:action="@{/guardarMovimiento}" method="post" th:object="${movimiento}">
             <div class="col-12">
                 <label for="concepto" class="form-label">Concepto</label>
-                <input type="text" class="form-control" name="concepto" th:field="*{concepto}">
+                <input type="text" class="form-control" name="concepto" th:field="*{concepto}" required="required">
             </div>
             <div class="col-6">
                 <label for="monto" class="form-label">Monto</label>
-                <input type="text" class="form-control" name="monto" th:field="*{monto}">
+                <input type="text" class="form-control" name="monto" th:field="*{monto}" required="required">
             </div>
             <div class="col-6">
                 <label for="fechaMov" class="form-label">Fecha Movimiento</label>
-                <input type="date" class="form-control" name="fechaMov" th:field="*{fechaMovimiento}">
+                <input type="date" class="form-control" name="fechaMov" th:field="*{fechaMovimiento}" required="required">
             </div>
-            <div class="col-6">
+            <!--div class="col-6">
                 <label for="empresa" class="form-label">Empresa</label>
-                <select class="form-select" th:field = "*{empresa.id}" name="empresa">
+                <select class="form-select" th:field = "*{empresa.id}" name="empresa" required="required">
                     <option value="0" selected>Seleccione empresa</option>
                     <option th:each="empresa : ${empresas}"
                             th:value="${empresa.id}"
@@ -36,10 +36,10 @@
 
                     </option>
                 </select>
-            </div>
+            </div-->
             <div class="col-6">
-                <label for="usuario" class="form-label">Empleado responsable</label>
-                <select class="form-select" th:field = "*{empleado.id}" name="usuario">
+                <label for="usuario" class="form-label">Empleado responsable</label >
+                <select class="form-select" th:field = "*{empleado.id}" name="usuario" required="required">
                     <option value="0" selected>Seleccione empleado</option>
                     <option th:each="usuario : ${usuarios}"
                             th:value="${usuario.id}"
@@ -48,12 +48,16 @@
                     </option>
                 </select>
             </div>
-            <div class="col-6">
-                <input type="submit" class="btn btn-primary" name="guardar" value="Guardar">
+
+            <div class="row g-3">
+                <div class="col-6">
+                    <input type="submit" class="btn btn-primary" name="guardar" value="Guardar">
+                </div>
+                <div class="col-6">
+                    <a class="btn btn-danger " role="button"  th:href="@{/movimientos/verMovimientos}">Cancelar</a>
+                </div>
             </div>
-            <div class="col-6">
-                <a class="btn btn-danger " role="button"  th:href="@{/movimientos/verMovimientos}">Cancelar</a>
-            </div>
+
         </form>
     </div>
 <footer th:replace="layout/plantilla :: footer"></footer>

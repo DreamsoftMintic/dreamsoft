@@ -56,7 +56,7 @@ public class EmpresaService {
             e.setFechaCr(empresa.getFechaCr());
             e.setFechaUpd(empresa.getFechaUpd());
             e.setEmpleados(empresa.getEmpleados());
-            e.setMovimientos(empresa.getMovimientos());
+            //e.setMovimientos(empresa.getMovimientos());
             e.setNIT(empresa.getNIT());
             this.repository.save(e);
             return e;

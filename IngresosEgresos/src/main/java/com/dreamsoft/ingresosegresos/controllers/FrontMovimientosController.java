@@ -41,8 +41,11 @@ public class FrontMovimientosController {
         LOG.log(Level.INFO,"viewMovimientos");
         List<MovimientoDinero> movimientos = movimientoService.getMovimientos();
         model.addAttribute("movimientos", movimientos);
+        Long sumaMonto=movimientoService.obtenerSumaMontos();
+        model.addAttribute("SumaMontos",sumaMonto);//Mandamos la suma de todos los montos a la plantilla
         return "movimientos/verMovimientos";
     }
+
 
     @GetMapping("/movimientos/crearMovimiento")
     public String createMovimiento(Model model){
@@ -58,13 +61,16 @@ public class FrontMovimientosController {
         model.addAttribute("empresas",empresas);
         return "movimientos/crearMovimiento";
     }
-
+    //controlador accion boton guardar en pagina crear movimiento
     @PostMapping("/guardarMovimiento")
     public String saveMovimiento(MovimientoDinero movimiento){
         LOG.log(Level.INFO,"saveMovimiento");
         System.out.println(movimiento.toString());
+        Empleado empleado = usuarioService.getUsuario(movimiento.getEmpleado().getId());
+        movimiento.setEmpresaId(empleado.getEmpresa().getId());
         movimiento.setFechaCr(LocalDate.now());
         movimiento.setFechaUpd(LocalDate.now());
+        System.out.println(movimiento.toString());
         movimiento = movimientoService.createMovimiento(movimiento);
         return "redirect:/movimientos/verMovimientos";
     }
@@ -83,7 +89,7 @@ public class FrontMovimientosController {
         model.addAttribute("empresas",empresas);
         return "movimientos/editarMovimiento";
     }
-
+    //controlador accion boton guardar en pagina editar movimiento
     @PostMapping("/actualizarMovimiento/{id}")
     public String updateMovimiento(@PathVariable("id") Long id, MovimientoDinero movimiento){
         LOG.log(Level.INFO,"updateMovimiento");

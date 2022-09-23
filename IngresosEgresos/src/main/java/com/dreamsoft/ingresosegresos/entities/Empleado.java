@@ -39,11 +39,7 @@ public class Empleado {
     @ManyToOne
     @JoinColumn(name = "empresa_id", referencedColumnName = "id")
     private Empresa empresa;
-/*
-    @OneToOne
-    @JoinColumn(name = "perfil_id", referencedColumnName = "id" )
-    private Perfil perfil;
-*/
+
     @OneToMany(targetEntity = MovimientoDinero.class, mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<MovimientoDinero> movimientos;
 
@@ -107,16 +103,7 @@ public class Empleado {
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
-/*
-    @JsonBackReference(value = "perfil-empleado")
-    public Perfil getPerfil() {
-        return perfil;
-    }
 
-    public void setPerfil(Perfil perfil) {
-        this.perfil = perfil;
-    }
-*/
     public List<MovimientoDinero> getMovimientos() {
         return movimientos;
     }
@@ -161,7 +148,6 @@ public class Empleado {
                 ", fechaUpd=" + fechaUpd +
                 ", estado=" + estado +
                 //", empresa=" + empresa.getId() +
-                //", perfil=" + perfil +
                 ", movimientos=" + movimientos +
                 '}';
     }

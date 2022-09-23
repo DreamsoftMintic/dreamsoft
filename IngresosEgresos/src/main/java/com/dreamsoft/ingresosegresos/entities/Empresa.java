@@ -30,10 +30,10 @@ public class Empresa {
 
     @OneToMany(targetEntity = Empleado.class, mappedBy = "empresa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Empleado> empleados;
-
+/*
     @OneToMany(targetEntity = MovimientoDinero.class, mappedBy = "empresa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<MovimientoDinero> movimientos;
-
+*/
     public Empresa(){
 
     }
@@ -103,6 +103,7 @@ public class Empresa {
     public void setEmpleados(List<Empleado> empleados) {
         this.empleados = empleados;
     }
+    /*
     @JsonManagedReference (value = "empresa-movimiento")
     public List<MovimientoDinero> getMovimientos() {
         return movimientos;
@@ -111,7 +112,7 @@ public class Empresa {
     public void setMovimientos(List<MovimientoDinero> movimientos) {
         this.movimientos = movimientos;
     }
-
+*/
     @Override
     public String toString() {
         return "Empresa{" +
@@ -123,7 +124,7 @@ public class Empresa {
                 ", fechaCr=" + fechaCr +
                 ", fechaUpd=" + fechaUpd +
                 ", empleados=" + empleados +
-                ", movimientos=" + movimientos +
+                //", movimientos=" + movimientos +
                 '}';
     }
 }

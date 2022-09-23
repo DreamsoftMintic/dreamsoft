@@ -3,10 +3,11 @@ package com.dreamsoft.ingresosegresos.controllers;
 import com.dreamsoft.ingresosegresos.entities.Empleado;
 import com.dreamsoft.ingresosegresos.entities.Empresa;
 import com.dreamsoft.ingresosegresos.entities.MovimientoDinero;
-import com.dreamsoft.ingresosegresos.entities.Rol;
 import com.dreamsoft.ingresosegresos.services.EmpresaService;
+import com.dreamsoft.ingresosegresos.services.MovimientoService;
 import com.dreamsoft.ingresosegresos.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,9 @@ public class FrontUsuarioController {
 
     @Autowired
     EmpresaService empresaService;
+
+    @Autowired
+    MovimientoService movimientoService;
 
     private final Logger LOG = Logger.getLogger(""+FrontUsuarioController.class);
 
@@ -47,7 +51,7 @@ public class FrontUsuarioController {
         model.addAttribute("empresas",empresas);
         return "usuarios/crearUsuario";
     }
-
+    //controlador accion boton guardar en pagina crear usuario
     @PostMapping("/guardarUsuario")
     public String saveUsuario(Empleado usuario){
         LOG.log(Level.INFO,"saveUsuario");
@@ -70,7 +74,7 @@ public class FrontUsuarioController {
         model.addAttribute("empresas",empresas);
         return "usuarios/editarUsuario";
     }
-
+    //controlador accion boton guardar en pagina editar usuario
     @PostMapping("/actualizarUsuario/{id}")
     public String updateUsuario(@PathVariable("id") Long id, Empleado usuario){
         LOG.log(Level.INFO,"updateUsuario");
@@ -110,4 +114,13 @@ public class FrontUsuarioController {
         return "redirect:/usuarios/verUsuarios";
     }
 
+    @GetMapping("/usuario/{id}/movimientos") //Filtro de movimientos por empleado
+    public String movimientosPorEmpleado(@PathVariable("id")Long id, Model model){
+        LOG.log(Level.INFO,"movimientosPorEmpleado");
+        List<MovimientoDinero> movimientos = movimientoService.obtenerPorEmpleado(id);
+        model.addAttribute("movimientos",movimientos);
+        Long sumaMonto = movimientoService.MontosPorEmpleado(id);
+        model.addAttribute("SumaMontos",sumaMonto);
+        return "movimientos/verMovimientos"; //Llamamos al HTML
+    }
 }

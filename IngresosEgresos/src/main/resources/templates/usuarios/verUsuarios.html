@@ -22,12 +22,13 @@
                 <th>Nombre</th>
                 <th>Documento</th>
                 <th>Correo</th>
-                <th>Contraseña</th>
+                <!--th>Contraseña</th-->
                 <th>Telefono</th>
                 <th>Rol</th>
                 <th>Empresa</th>
                 <th>Fecha Creacion</th>
                 <th>Fecha Actualizacion</th>
+                <th>Movimientos</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
             </tr>
@@ -35,12 +36,15 @@
                 <td th:text = "${usuario.nombreEmpleado}">Nombre</td>
                 <td th:text = "${usuario.documento}">Documento</td>
                 <td th:text = "${usuario.correoEmpleado}">Correo</td>
-                <td th:text = "${usuario.pass}">Contraseña</td>
+                <!--td th:text = "${usuario.pass}">Contraseña</td-->
                 <td th:text = "${usuario.telefono}">Telefono</td>
-                <td th:text = "${usuario.rol}">Rol</td>
+                <!--td th:text = "${usuario.rol}">Rol</td-->
+                <td th:if="${usuario.rol=='ROLE_ADMIN'}">Administrador</td>
+                <td th:if="${usuario.rol=='ROLE_USER'}">Operativo</td>
                 <td th:text = "${usuario.empresa.nombreEmpresa}">Empresa</td>
                 <td th:text = "${usuario.fechaCr}">Fecha Creacion</td>
                 <td th:text = "${usuario.fechaUpd}">Fecha Actualizacion</td>
+                <td><a class="btn btn-success" role="button" th:href="@{/usuario/{id}/movimientos (id=${usuario.id})}">Ver</a> </td>
                 <td><a class="btn btn-warning" role="button" th:href="@{/usuarios/editarUsuario/}+${usuario.id}">Editar</a> </td>
                 <td><a class="btn btn-danger" role="button" th:href="@{/usuarios/desactivarUsuario/}+${usuario.id}">Desactivar</a></td>
             </tr>

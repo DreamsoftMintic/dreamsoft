@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"  content="width=device-width, initial-scale=1.0">
@@ -8,20 +9,32 @@
     <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.0.0/css/all.min.css}" >
     <script th:src="@{/webjars/bootstrap/5.2.0/js/bootstrap.bundle.min.js}"></script>
     <script th:src="@{/webjars/popper/js/2.9.3/umd/popper.min.js}"></script>
+
+
+    <script src="https://kit.fontawesome.com/c45c0314b0.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
     <header class="container" th:fragment="header">
         <img src="img/cuentas.png" width="100"  alt="logo"><h1>Sistema de gestión de ingresos y egresos</h1>
     </header>
 
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <!--
+
+d-grid gap-2 d-md-flex "
+
+-->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" th:href="@{/}"> <img src="/img/cuentas.png" width="100"  alt="logo">  Ingresos & Egresos</a>
+            <a class="navbar-brand" th:href="@{/}"> <img src="/img/cuentas.png" width="60"  alt="logo">  Ingresos & Egresos</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse d-grid gap-2 d-md-flex " method="post" th:action="@{/logout}" id="navbarNav">
-                <ul class="navbar-nav">
+
+            <div class="collapse navbar-collapse d-grid gap-2 d-md-flex" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
                     <li class="nav-item">
                         <a class="nav-link " aria-current="page" th:href="@{/empresas/verEmpresas}">Empresas</a>
                     </li>
@@ -32,20 +45,29 @@
                         <a class="nav-link" th:href="@{/movimientos/verMovimientos}">Movimientos</a>
                     </li>
 
+
                 </ul>
-                <div class="collapse navbar-collapse d-grid gap-2 d-md-flex justify-content-md-end" >
-                    <button class="btn btn-warning me-md-2" type="button">
-                        <a th:href="@{/logout}">
-                            Salir
+
+                <ul sec:authorize="isAuthenticated()" class="navbar-nav ms-auto">
+                    <li class="nav-item mr-4">
+                        <a href="#" class="nav-link">
+                            <span>Bienvenido</span>
+                            <span sec:authentication="name">Usuario</span>
                         </a>
-                    </button>
-                </div>
+                    </li>
+                    <li class="nav-item">
+                        <form method="post" th:action="@{/logout}">
+                            <a href="#" onclick="this.parentNode.submit();" class="nav-link">
 
+                Salir
+            </a>
+        </form>
+    </li>
+</ul>
 
-            </div>
-        </div>
-    </nav>
-
+</div>
+</div>
+</nav>
 
 
     <footer class="container px-4 py-5 my-5 text-center" th:fragment="footer">
@@ -53,3 +75,6 @@
     </footer>
 </body>
 </html>
+
+<!-- sec:authorize="isAuthenticated()" -->
+<!-- sec:authorize="hasRole('ROLE_ADMIN')" -->

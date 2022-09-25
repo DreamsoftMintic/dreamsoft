@@ -17,6 +17,12 @@ public class Empleado {
     private String nombreEmpleado;
     @Column(name = "documento", unique = true)
     private int documento;
+
+
+    //agregado 23 sep 2022
+    //@javax.validation.constraints.NotEmpty
+    @Column(name = "username", unique = true)
+    private String username;
     @Column(name = "correo_empleado", unique = true)
     private String correoEmpleado;
 
@@ -120,6 +126,10 @@ public class Empleado {
         this.estado = estado;
     }
 
+    public String getUsername() {return username;  }
+
+    public void setUsername(String username) {this.username = username; }
+
     public String getPass() {
         return pass;
     }
@@ -143,6 +153,7 @@ public class Empleado {
                 ", nombreEmpleado='" + nombreEmpleado + '\'' +
                 ", documento=" + documento +
                 ", correoEmpleado='" + correoEmpleado + '\'' +
+                ", username='" + username + '\'' +
                 ", rol=" + rol +
                 ", fechaCr=" + fechaCr +
                 ", fechaUpd=" + fechaUpd +

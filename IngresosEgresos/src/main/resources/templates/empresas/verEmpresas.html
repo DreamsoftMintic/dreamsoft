@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"  content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,7 @@
     <div class="container">
         <h2 class="text-center my-3">Lista de empresas</h2>
         <div class="d-grid my-3 justify-content-end">
-                <a class="btn btn-primary" role="button" th:href="@{/empresas/crearEmpresa}">Nueva Empresa</a>
+                <a sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-primary" role="button" th:href="@{/empresas/crearEmpresa}">Nueva Empresa</a>
         </div>
 
         <table class="table table-striped table-hover my-3">
@@ -27,8 +28,8 @@
                 <th>Fecha Actualizacion</th>
                 <th>Empleados</th>
                 <th>Movimientos</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <th sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
+                <th sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
             </tr>
             <tr th:each="empresa : ${empresas}">
                 <td th:text = "${empresa.nombreEmpresa}">Nombre</td>
@@ -39,8 +40,8 @@
                 <td th:text = "${empresa.fechaUpd}">Fecha Actualizacion</td>
                 <td><a class="btn btn-info" role="button" th:href="@{/empresa/{id}/usuarios(id=${empresa.id})}">Ver</a></td>
                 <td><a class="btn btn-success" role="button" th:href="@{/empresa/{id}/movimientos (id=${empresa.id})}">Ver</a></td>
-                <td><a class="btn btn-warning" role="button" th:href="@{/empresas/editarEmpresa/}+${empresa.id}">Editar</a></td>
-                <td><a class="btn btn-danger" role="button" th:href="@{/empresas/eliminarEmpresa/}+${empresa.id}">Eliminar</a></td>
+                <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-warning" role="button" th:href="@{/empresas/editarEmpresa/}+${empresa.id}">Editar</a></td>
+                <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-danger" role="button" th:href="@{/empresas/eliminarEmpresa/}+${empresa.id}">Eliminar</a></td>
             </tr>
         </table>
     </div>

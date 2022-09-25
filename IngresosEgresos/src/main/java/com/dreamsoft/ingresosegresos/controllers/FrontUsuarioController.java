@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
+
 @Controller
 public class FrontUsuarioController {
     @Autowired
@@ -60,8 +62,9 @@ public class FrontUsuarioController {
         LOG.log(Level.INFO, "saveUsuario");
         System.out.println(usuario.toString());
 
+        //metodo natalie
         //llamar metodo encriptar password
-        String passEncriptada = passwordEncoder().encode(usuario.getPass());
+        String passEncriptada = new BCryptPasswordEncoder().encode(usuario.getPass());
         usuario.setPass(passEncriptada);
 
         usuario.setEstado(true);
@@ -92,7 +95,7 @@ public class FrontUsuarioController {
         String Oldpass = usuarioService.getUsuario(id).getPass();
         if (usuario.getPass().equals(Oldpass)) {
             // llamar metodo encriptar password
-            String passEncriptada = passwordEncoder().encode(usuario.getPass());
+            String passEncriptada = new BCryptPasswordEncoder().encode(usuario.getPass());
             usuario.setPass(passEncriptada);
         }
 
@@ -142,8 +145,5 @@ public class FrontUsuarioController {
     }
 
     //Metodo para encriptar contraseñas
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+
 }
